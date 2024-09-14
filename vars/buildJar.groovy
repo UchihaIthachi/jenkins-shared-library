@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def isWindows() {
-    return System.getProperty("os.name").toLowerCase().contains("win")
+    return env.OS?.toLowerCase().contains("windows")
 }
 
 def call() {

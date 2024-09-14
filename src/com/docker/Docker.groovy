@@ -11,7 +11,7 @@ class Docker implements Serializable {
     }
 
     def isWindows() {
-        return System.getProperty("os.name").toLowerCase().contains("win")
+        return env.OS?.toLowerCase().contains("windows")
     }
 
     def buildDockerImage(String imageName) {
