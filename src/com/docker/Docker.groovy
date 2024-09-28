@@ -36,7 +36,8 @@ class Docker implements Serializable {
             // Execute a shell command to log in to Docker Hub
             // The `echo $DOCKER_HUB_PASSWORD` part is used to pass the password to the `docker login` command
             // The `--password-stdin` option tells Docker to read the password from the standard input
-            script.bat "echo %DOCKER_HUB_PASSWORD% | docker login -u %DOCKER_HUB_USERNAME% --password-stdin"
+            // script.bat "echo %DOCKER_HUB_PASSWORD% | docker login -u %DOCKER_HUB_USERNAME% --password-stdin"
+            script.bat "docker login --username=%DOCKER_HUB_USERNAME% --password=%DOCKER_HUB_PASSWORD% "
         }
 
     }
