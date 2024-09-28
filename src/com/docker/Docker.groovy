@@ -25,17 +25,20 @@ class Docker implements Serializable {
         script.echo "Logging in to Docker Hub"
 
         script.withCredentials([script.usernamePassword(
-                credentialsId: 'docker-hub-credentials',
-                passwordVariable: 'DOCKER_HUB_PASSWORD',
-                usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+            credentialsId: 'docker-hub-credentials',
+            passwordVariable: 'DOCKER_HUB_PASSWORD',
+            usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+
+            // Print the username and password variables for checking
+            script.echo "Docker Hub Username: ${script.DOCKER_HUB_USERNAME}"
+            script.echo "Docker Hub Password: ${script.DOCKER_HUB_PASSWORD}"
 
             // Execute a shell command to log in to Docker Hub
             // The `echo $DOCKER_HUB_PASSWORD` part is used to pass the password to the `docker login` command
             // The `--password-stdin` option tells Docker to read the password from the standard input
             script.bat "echo '${script.DOCKER_HUB_PASSWORD}' | docker login -u '${script.DOCKER_HUB_USERNAME}' --password-stdin"
-
-
         }
+
     }
 
     def dockerHubPush(String imageName) {
